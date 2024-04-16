@@ -1,6 +1,6 @@
 import { IProduct } from "@/app/types";
 
-export const productsToPreLoad: IProduct[] = [
+export const productsToPreLoad = [
   {
     name: "iPhone 11",
     price: 699,

@@ -10,7 +10,10 @@ export const ProductCart: React.FC<IProduct> = ({
   categoryId,
 }): React.ReactElement => {
   return (
-    <div className="w-64 border-2 border-red-500 flex flex-col content-between items-center p-2 rounded-md">
+    <div
+      key={id}
+      id={String(id)}
+      className="w-64 border-2 border-red-500 flex flex-col content-between items-center p-2 rounded-md hover:scale-105 duration-300">
       <img src={image} alt={name} className="h-48 rounded-md" />
       <h1 className="text-xl">{name}</h1>
       <p>{`${description.slice(0, 50)}...`}</p>

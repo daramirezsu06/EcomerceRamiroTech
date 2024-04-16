@@ -20,10 +20,11 @@ export const Header1: React.FC = (): React.ReactElement => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
     console.log(isMenuOpen);
-    
   };
 
-  window.addEventListener("scroll", handleScroll);
+  if (typeof window !== "undefined") {
+    window.addEventListener("scroll", handleScroll);
+  }
   return (
     <>
       <header
