@@ -1,20 +1,22 @@
-import { Header1 } from "@/components/header";
-import { Home1 } from "@/components/cartsProducts";
+import {  RenderProducts } from "@/components/cartsProducts";
 import { CartsCategosies } from "@/components/cartsCategosies";
 import { PubliDivisor } from "@/components/publi_divisor";
 import { PublicOferTop } from "@/components/public_ofer_top";
+import { HeaderCurrent } from "@/components/headerCurrent";
+import Footer from "@/components/footer";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <>
-      <Header1 />
+      <HeaderCurrent />
       <CartsCategosies />
 
       <div className="bg-slate-100">
         <PubliDivisor />
         <PublicOferTop />
-        <Home1 />
+        <RenderProducts />
       </div>
+      <Footer/>
     </>
   );
 }

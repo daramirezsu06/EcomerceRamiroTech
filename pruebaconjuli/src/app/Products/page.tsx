@@ -1,13 +1,16 @@
-import { Header1 } from "@/components/header";
-import { Home1 } from "@/components/cartsProducts";
+
+import { RenderProducts } from "@/components/cartsProducts";
+import Footer from "@/components/footer";
+import { HeaderCurrent } from "@/components/headerCurrent";
 
 export default function Home() {
   return (
     <>
-      <Header1 />
+      <HeaderCurrent />
       <div className="bg-slate-100">
-        <Home1 />
+        <RenderProducts />
       </div>
+      <Footer/>
     </>
   );
 }
