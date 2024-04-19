@@ -1,8 +1,11 @@
 import { RiShoppingCartLine } from "@remixicon/react";
+import Link from "next/link";
 export const LogoCar: React.FC = (): React.ReactElement => {
   return (
-    <div>
-      <RiShoppingCartLine color="#ffffff" />
-    </div>
+    <Link href="/cart">
+      <div>
+        <RiShoppingCartLine color="#ffffff" />
+      </div>
+    </Link>
   );
 };

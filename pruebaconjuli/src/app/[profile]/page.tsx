@@ -46,7 +46,7 @@ const { id, name, description, price, stock, image, categoryId } = productbyid;
               <h3 className="text-red-500 text-xl">{`${stock} Unidades Disponibles`}</h3>
             </div>
 
-            <div className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center">
+            <div className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center" >
               <RiShoppingCartLine color="#ffffff" size={25} />
             </div>
           </div>

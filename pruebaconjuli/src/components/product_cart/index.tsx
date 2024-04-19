@@ -1,6 +1,8 @@
 import { IProduct } from "@/app/types";
 import { RiShoppingCartLine } from "@remixicon/react";
 import Link from "next/link";
+import AddToCar from "../addtocar";
+
 export const ProductCart: React.FC<IProduct> = ({
   id,
   name,
@@ -21,9 +23,9 @@ export const ProductCart: React.FC<IProduct> = ({
         <p>{`${description.slice(0, 50)}...`}</p>
         <div className="flex justify-between items-center w-full px-8">
           <h3 className="text-red-500 text-xl">{`${price} $`}</h3>
-          <div className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center">
+          <AddToCar id={id}>
             <RiShoppingCartLine color="#ffffff" size={25} />
-          </div>
+          </AddToCar>
         </div>
       </div>
     </Link>

@@ -13,3 +13,11 @@ export const getDataProduct = async (url: string): Promise<IProduct[]> => {
   }));
   return dataReturn;
 };
+
+export const getProductById = async (
+  id: number
+): Promise<IProduct | undefined> => {
+  const products = await getDataProduct("http://localhost:3000/products");
+  const product = await products.find((product) => product.id == id);
+  return product;
+};
