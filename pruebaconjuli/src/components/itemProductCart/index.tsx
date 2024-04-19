@@ -1,12 +1,13 @@
-import { IProduct } from "@/app/types";
+import { IProductcart } from "@/app/types";
 
-const ItemProductCart: React.FC<IProduct> = ({
+const ItemProductCart: React.FC<IProductcart> = ({
   id,
   name,
   description,
   price,
   stock,
   image,
+  cantidad,
 }): React.ReactElement => {
   return (
     <div className="flex justify-center items-center gap-4 border-2 border-red-500 md:w-1/2 m-auto my-4 rounded-md p-2">
@@ -16,8 +17,9 @@ const ItemProductCart: React.FC<IProduct> = ({
 
       <div>
         <h1 className="text-xl">{name}</h1>
-        <p>{`${description.slice(0, 50)}...`}</p>
+        <p>{`${description}`}</p>
         <h3 className="text-red-500 text-xl">{`${price} $`}</h3>
+        <p>{`cantidad: ${cantidad}`}</p>
       </div>
     </div>
   );

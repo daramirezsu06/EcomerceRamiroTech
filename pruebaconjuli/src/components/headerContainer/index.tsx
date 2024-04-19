@@ -1,4 +1,6 @@
 "use client";
+import React from "react";
+import { BotonBorrar } from "@/components/deletcar";
 
 export const HeaderContainer = ({
   children,
@@ -11,6 +13,8 @@ export const HeaderContainer = ({
         <div className="md:w-3/4  md:m-auto mx-4 flex-col content-around h-full">
           {children}
         </div>
+
+        <BotonBorrar />
       </header>
     </>
   );

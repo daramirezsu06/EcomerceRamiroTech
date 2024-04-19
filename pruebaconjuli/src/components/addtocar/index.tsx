@@ -8,13 +8,17 @@ const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
     e.preventDefault();
     e.stopPropagation();
     const id = Number(e.currentTarget.id);
-    const arraycar = JSON.parse(localStorage.getItem("car") || "[]");
+    const arraycar: { id: number; cantidad: number }[] = JSON.parse(
+      localStorage.getItem("car") || "[]"
+    );
 
-    
+    const index = arraycar.findIndex((item) => item.id == id);
+    if (index !== -1) {
+      arraycar[index].cantidad += 1;
+    } else {
+      arraycar.push({ id, cantidad: 1 });
+    }
 
-
-
-    arraycar.push(id);
     localStorage.setItem("car", JSON.stringify(arraycar));
     console.log(arraycar);
   };

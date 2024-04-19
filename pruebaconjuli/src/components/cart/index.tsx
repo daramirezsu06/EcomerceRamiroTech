@@ -3,17 +3,19 @@ import { getDataProduct, getProductById } from "@/utils/getData";
 import { ProductCart } from "../product_cart";
 import { json } from "stream/consumers";
 import { useEffect, useState } from "react";
-import { IProduct } from "@/app/types";
+import { IProduct, IProductcart } from "@/app/types";
 import ItemProductCart from "../itemProductCart";
 
 const Cart = () => {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<IProductcart[]>([]);
   useEffect(() => {
     const arrayProducts = JSON.parse(localStorage.getItem("car") || "[]");
-    const products = arrayProducts.map(async (id: number) => {
-      const product = await getProductById(id);
-      return product;
-    });
+    const products = arrayProducts.map(
+      async (item: { id: number; cantidad: number }) => {
+        const product = await getProductById(item.id);
+        return { ...product, cantidad: item.cantidad };
+      }
+    );
     Promise.all(products).then((products) => setProducts(products));
   }, []);
 

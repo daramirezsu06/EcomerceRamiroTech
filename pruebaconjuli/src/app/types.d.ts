@@ -7,6 +7,9 @@ export interface IProduct {
   image: string;
   categoryId: number;
 }
+export interface IProductcart extends IProduct {
+  cantidad: number;
+}
 
 export interface ICategory {
   id?: number;
