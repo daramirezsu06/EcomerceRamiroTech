@@ -3,12 +3,16 @@ import { LoginFormArray } from "@/utils/loginForm";
 import { useEffect, useState } from "react";
 import { validateLoginForm } from "@/utils/formValidations";
 import { LoginErrorProps } from "@/app/types";
+import { LoginPost } from "@/utils/loginPost";
+import { useLoginContext } from "../loginContext";
+import Cookies from "js-cookie";
 
 interface LoginForm {
   email: string;
   password: string;
 }
 const Login = () => {
+  const { setToken } = useLoginContext();
   const [LoginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
@@ -30,9 +34,14 @@ const Login = () => {
     setLoginError(errors);
   }, [LoginForm]);
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log(LoginForm);
+    const response = await LoginPost(LoginForm);
+    if (response.token) {
+      setToken(response.token);
+      console.log(response.token);
+      console.log(Cookies.get("token"));
+    }
   };
 
   return (
