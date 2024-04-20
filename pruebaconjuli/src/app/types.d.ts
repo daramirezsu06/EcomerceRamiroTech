@@ -49,3 +49,31 @@ export interface IProfile {
 export interface ItoggleMenu {
   toggleMenu: () => void;
 }
+
+export interface LoginProps {
+  email: string;
+  password: string;
+}
+
+export interface LoginErrorProps {
+  email?: string;
+  password?: string;
+}
+
+export interface RegisterProps {
+  email: string;
+  password: string;
+  confirmPassword?: string;
+  name: string;
+  address: string;
+  phone: string;
+}
+
+export interface RegisterErrorProps {
+  email?: string;
+  password?: string;
+  confirmPassword?: string;
+  name?: string;
+  address?: string;
+  phone?: string;
+}

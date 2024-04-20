@@ -20,7 +20,7 @@ const Cart = () => {
   }, []);
 
   return (
-    <div>
+    <div className="md:w-3/4 flex flex-wrap m-auto gap-2 justify-center ">
       {products.map((product) => (
         <ItemProductCart key={product.id} {...product} />
       ))}

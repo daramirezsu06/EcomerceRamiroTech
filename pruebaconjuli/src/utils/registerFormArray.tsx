@@ -1,12 +1,35 @@
-import { RiLockLine, RiMailLine, RiMapPinLine, RiPhoneLine, RiUserLine } from "@remixicon/react";
-export const registerFormArray = [
-    {
-        name: "email",
-        label: "Email",
-        type: "email",
-        placeholder: "Email",
-        required: true,
-        icon: <RiMailLine/>
+import {
+  RiLockLine,
+  RiMailLine,
+  RiMapPinLine,
+  RiPhoneLine,
+  RiUserLine,
+} from "@remixicon/react";
+export interface IRegisterForm {
+  name: string;
+  label: string;
+  type: string;
+  placeholder: string;
+  required: boolean;
+  icon: JSX.Element;
+}
+
+export const registerFormArray: IRegisterForm[] = [
+  {
+    name: "name",
+    label: "Name",
+    type: "text",
+    placeholder: "Name",
+    required: true,
+    icon: <RiUserLine />,
+  },
+  {
+    name: "email",
+    label: "Email",
+    type: "email",
+    placeholder: "Email",
+    required: true,
+    icon: <RiMailLine />,
   },
   {
     name: "password",
@@ -14,16 +37,15 @@ export const registerFormArray = [
     type: "password",
     placeholder: "Password",
     required: true,
-    icon:<RiLockLine/>
-
+    icon: <RiLockLine />,
   },
   {
-    name: "name",
-    label: "Name",
-    type: "text",
-    placeholder: "Name",
+    name: "confirmPassword",
+    label: "confirmPassword",
+    type: "password",
+    placeholder: "Password",
     required: true,
-    icon:<RiUserLine/>
+    icon: <RiLockLine />,
   },
   {
     name: "address",
@@ -31,7 +53,7 @@ export const registerFormArray = [
     type: "text",
     placeholder: "Address",
     required: true,
-    icon:<RiMapPinLine/>
+    icon: <RiMapPinLine />,
   },
   {
     name: "phone",
@@ -39,6 +61,6 @@ export const registerFormArray = [
     type: "text",
     placeholder: "Phone",
     required: true,
-    icon:<RiPhoneLine/>
+    icon: <RiPhoneLine />,
   },
 ];

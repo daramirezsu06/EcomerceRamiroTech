@@ -9,7 +9,6 @@ import Footer from "@/components/footer";
 export default function Home(): JSX.Element {
   return (
     <>
-      <HeaderCurrent />
       <CartsCategosies />
 
       <div className="bg-slate-100">
@@ -17,7 +16,6 @@ export default function Home(): JSX.Element {
         <PublicOferTop />
         <RenderProducts />
       </div>
-      <Footer />
     </>
   );
 }

@@ -1,64 +1,45 @@
 "use client";
-import { IRegisterForm, registerFormArray } from "@/utils/registerFormArray";
+import { LoginFormArray } from "@/utils/loginForm";
 import { useEffect, useState } from "react";
-import { RegisterErrorProps } from "@/app/types";
-import { validateRegisterForm } from "@/utils/formValidations";
-import { useRouter } from "next/navigation";
-import { register } from "@/utils/registerpost";
+import { validateLoginForm } from "@/utils/formValidations";
+import { LoginErrorProps } from "@/app/types";
 
-interface RegisterForm {
+interface LoginForm {
   email: string;
   password: string;
-  name: string;
-  address: string;
-  phone: string;
-  confirmPassword: string;
 }
-
-const Register: React.FC = (): React.ReactElement => {
-  const router = useRouter();
-  const [registerForm, setRegisterForm] = useState<RegisterForm>({
+const Login = () => {
+  const [LoginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
-    name: "",
-    address: "",
-    phone: "",
-    confirmPassword: "",
   });
 
-  const [registerError, setRegisterError] = useState<RegisterErrorProps>({
+  const [LoginError, setLoginError] = useState<LoginErrorProps>({
     email: "",
     password: "",
-    name: "",
-    address: "",
-    phone: "",
-    confirmPassword: "",
   });
-
-  useEffect(() => {
-    const errors = validateRegisterForm(registerForm);
-    setRegisterError(errors);
-  }, [registerForm]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRegisterForm({
-      ...registerForm,
+    setLoginForm({
+      ...LoginForm,
       [e.target.name]: e.target.value,
     });
-    console.log(registerForm);
   };
+  useEffect(() => {
+    const errors = validateLoginForm(LoginForm);
+    setLoginError(errors);
+  }, [LoginForm]);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const response = await register(registerForm);
-    router.push("/Login");
+    console.log(LoginForm);
   };
 
   return (
     <>
       <form className="md:w-1/3 m-auto md:my-20 ">
         <h1 className="text-3xl text-center">Register</h1>
-        {registerFormArray.map(
+        {LoginFormArray.map(
           ({ name, label, type, placeholder, required, icon }) => {
             return (
               <div key={name} className="flex flex-col ">
@@ -73,10 +54,10 @@ const Register: React.FC = (): React.ReactElement => {
                   required={required}
                   className="border-2 mx-1/3 py-2 rounded-md"
                   onChange={handleChange}
-                  value={registerForm[name as keyof RegisterForm]}
+                  value={LoginForm[name as keyof LoginForm]}
                 />
                 <p className="text-red-500">
-                  {registerError[name as keyof RegisterErrorProps]}
+                  {LoginError[name as keyof LoginErrorProps]}
                 </p>
               </div>
             );
@@ -86,11 +67,10 @@ const Register: React.FC = (): React.ReactElement => {
           className="bg-red-500 text-white p-2 rounded-lg my-4"
           type="submit"
           onClick={handleSubmit}>
-          Register
+          Login
         </button>
       </form>
     </>
   );
 };
-
-export default Register;
+export default Login;

@@ -4,7 +4,6 @@ import { HeaderCurrent } from "../headerCurrent";
 function About(): React.ReactElement {
   return (
     <>
-      <HeaderCurrent />
       <div className="flex flex-col items-center justify-center  text-white py-10 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl w-full bg-slate-100 p-8 rounded-lg shadow-lg text-gray-900">
           <h2 className="text-3xl font-extrabold text-center mb-6">About</h2>
