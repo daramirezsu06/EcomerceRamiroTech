@@ -30,6 +30,8 @@ const Cart = () => {
 
     const response = await createOrder(arrayProducts, Cookies.get("token"));
     console.log(response);
+
+    localStorage.removeItem("car");
   };
 
   return (

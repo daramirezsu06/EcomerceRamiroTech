@@ -1,14 +1,36 @@
-import { ItemNav } from "../item_nav";
-
-const itemsNavBar = ["Help", "log out"];
+"use client";
+import { useLoginContext } from "../loginContext";
+import Cookies from "js-cookie";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const NavBarRight: React.FC = (): React.ReactElement => {
+  const router = useRouter();
+  const { setToken, token } = useLoginContext();
+  const handleClick = () => {
+    setToken(null);
+    router.push("/");
+  };
+  const handleClick2 = () => {
+    const token = Cookies.get("token");
+    console.log(token);
+  };
   return (
     <nav>
       <ul className="md:flex content-around gap-3 hidden ">
-        {itemsNavBar.map((item) => (
-          <ItemNav key={item}>{item}</ItemNav>
-        ))}
+        <button onClick={handleClick2}>Help</button>
+        {token && (
+          <>
+            <Link href="/orders">history</Link>{" "}
+            <button onClick={handleClick}>Log Out</button>
+          </>
+        )}
+        {!token && (
+          <>
+            <Link href="/Login">Log In</Link>
+            <Link href="/Register">Register</Link>
+          </>
+        )}
       </ul>
     </nav>
   );

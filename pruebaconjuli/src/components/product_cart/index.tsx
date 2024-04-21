@@ -13,7 +13,7 @@ export const ProductCart: React.FC<IProduct> = ({
   categoryId,
 }): React.ReactElement => {
   return (
-    <Link href={`/${id}`} key={id}>
+    <Link href={`/Products/${id}`} key={id}>
       <div
         key={id}
         id={String(id)}

@@ -26,7 +26,7 @@ async function createOrder(products: number[], token: string | undefined) {
   }
 }
 
-async function getOrders(token: string) {
+async function getOrders(token: string | null) {
   try {
     if (!token) {
       throw new Error("No token provided");
@@ -40,8 +40,10 @@ async function getOrders(token: string) {
       },
     });
     return response.data;
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (error) {
+    
+    console.error("Error en la solicitud:", error);
+    throw error; 
   }
 }
 

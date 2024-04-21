@@ -20,10 +20,20 @@ export const LoginProvider = ({ children }: AuthProviderProps) => {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
+    const token = Cookies.get("token");
     if (token) {
-      Cookies.set("token", token);
+      setToken(token);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      Cookies.set("token", token, {
+        secure: true,
+        sameSite: "strict",
+      });
     } else {
-      // Cookies.remove("token");
+      Cookies.remove("token");
     }
   }, [token]);
 

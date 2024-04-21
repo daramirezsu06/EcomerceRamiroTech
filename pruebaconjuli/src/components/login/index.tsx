@@ -6,12 +6,15 @@ import { LoginErrorProps } from "@/app/types";
 import { LoginPost } from "@/utils/loginPost";
 import { useLoginContext } from "../loginContext";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 interface LoginForm {
   email: string;
   password: string;
 }
 const Login = () => {
+  const router = useRouter();
+
   const { setToken } = useLoginContext();
   const [LoginForm, setLoginForm] = useState<LoginForm>({
     email: "",
@@ -41,6 +44,8 @@ const Login = () => {
       setToken(response.token);
       console.log(response.token);
       console.log(Cookies.get("token"));
+
+      router.push("/orders");
     }
   };
 
