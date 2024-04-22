@@ -2,8 +2,10 @@
 import { useState } from "react";
 import { RiShoppingCartLine } from "@remixicon/react";
 import { useRouter } from "next/navigation";
+import { useLoginContext } from "../Context";
 
 export const ClienteDetail = ({ stock, id }: { stock: number; id: number }) => {
+  const { setTotal } = useLoginContext();
   const router = useRouter();
   const [count, setCount] = useState(0);
 
@@ -24,6 +26,17 @@ export const ClienteDetail = ({ stock, id }: { stock: number; id: number }) => {
 
     localStorage.setItem("car", JSON.stringify(arraycar));
     console.log(arraycar);
+
+    localStorage.setItem("car", JSON.stringify(arraycar));
+    console.log(arraycar);
+    const totalproducts = arraycar.reduce(
+      (acc: number, item: { id: number; cantidad: number }) => {
+        return acc + item.cantidad;
+      },
+      0
+    );
+
+    setTotal(totalproducts);
 
     router.push("/cart");
   };
@@ -58,7 +71,7 @@ export const ClienteDetail = ({ stock, id }: { stock: number; id: number }) => {
 
       <button
         id={String(id)}
-        className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center"
+        className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center shadow-lg shadow-indigo-500 hover:bg-lime-500"
         onClick={handleClick}>
         <RiShoppingCartLine color="#ffffff" size={25} />
       </button>

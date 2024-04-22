@@ -29,14 +29,14 @@ const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
         return acc + item.cantidad;
       },
       0
-    )
+    );
 
     setTotal(totalproducts);
   };
   return (
     <button
       role="button"
-      className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center"
+      className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center shadow-lg shadow-indigo-500 hover:bg-lime-500"
       id={String(id)}
       onClick={handleClick}>
       {children}

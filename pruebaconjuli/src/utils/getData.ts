@@ -1,9 +1,10 @@
 import { ICategory, IProduct } from "../app/types";
 import { productsToPreLoad } from "./arrayProducts";
 import { categoriesToPreLoad } from "./categorys";
+const URL = process.env.NEXT_PUBLIC_API_URL;
 
-export const getDataProduct = async (url: string): Promise<IProduct[]> => {
-  const response = await fetch(url);
+export const getDataProduct = async (): Promise<IProduct[]> => {
+  const response = await fetch(`${URL}/products`);
   const data: IProduct[] = await response.json();
   const dataReturn: IProduct[] = data.map((product: IProduct) => ({
     ...product,
@@ -17,7 +18,7 @@ export const getDataProduct = async (url: string): Promise<IProduct[]> => {
 export const getProductById = async (
   id: number
 ): Promise<IProduct | undefined> => {
-  const products = await getDataProduct("http://localhost:3000/products");
+  const products = await getDataProduct();
   const product = await products.find((product) => product.id == id);
   return product;
 };

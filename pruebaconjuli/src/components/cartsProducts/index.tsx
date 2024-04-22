@@ -6,7 +6,7 @@ const URL = process.env.API_URL;
 
 export const RenderProducts: React.FC =
   async (): Promise<React.ReactElement> => {
-    const dataProducts = await getDataProduct(`${URL}/products`);
+    const dataProducts = await getDataProduct();
 
     return (
       <div className="flex flex-wrap justify-center gap-4 md:w-3/4 m-auto py-4 ">

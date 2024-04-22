@@ -6,14 +6,18 @@ interface AuthContextProps {
   token: string | null;
   setToken: (token: string | null) => void;
   total: number | undefined;
-  setTotal: (total: number | undefined) => void; // Corrección aquí
+  setTotal: (total: number | undefined) => void;
+  login: boolean;
+  setLogin: (login: boolean) => void; // Corrección aquí
 }
 
 const LoginContext = createContext<AuthContextProps>({
   token: null,
-  setToken: () => { },
+  setToken: () => {},
   total: 0,
-  setTotal: () => { }
+  setTotal: () => {},
+  login: false,
+  setLogin: () => {},
 });
 
 interface AuthProviderProps {
@@ -23,6 +27,7 @@ interface AuthProviderProps {
 export const LoginProvider = ({ children }: AuthProviderProps) => {
   const [total, setTotal] = useState<number | undefined>(0);
   const [token, setToken] = useState<string | null>(null);
+  const [login, setLogin] = useState<boolean>(false);
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -50,13 +55,18 @@ export const LoginProvider = ({ children }: AuthProviderProps) => {
         secure: true,
         sameSite: "strict",
       });
+
+      setLogin(true);
     } else {
       Cookies.remove("token");
+
+      setLogin(false);
     }
   }, [token]);
 
   return (
-    <LoginContext.Provider value={{ token, setToken, total, setTotal }}>
+    <LoginContext.Provider
+      value={{ token, setToken, total, setTotal, login, setLogin }}>
       {children}
     </LoginContext.Provider>
   );

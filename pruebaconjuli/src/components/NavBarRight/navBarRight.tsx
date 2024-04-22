@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 export const NavBarRight: React.FC = (): React.ReactElement => {
   const router = useRouter();
-  const { setToken, token } = useLoginContext();
+  const { setToken, token, setLogin } = useLoginContext();
   const handleClick = () => {
     setToken(null);
     localStorage.removeItem("user");

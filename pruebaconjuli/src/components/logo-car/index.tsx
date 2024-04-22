@@ -8,8 +8,13 @@ export const LogoCar: React.FC = (): React.ReactElement => {
 
   return (
     <Link href="/cart">
-      <div className="flex items-center gap-2">
-        <p>{total}</p>
+      <div className="flex items-center gap-2 ">
+        {total == 0 ? (
+          <p>{total}</p>
+        ) : (
+          <p className="animate-bounce">{total}</p>
+        )}
+
         <div>
           <RiShoppingCartLine color="#ffffff" />
         </div>
