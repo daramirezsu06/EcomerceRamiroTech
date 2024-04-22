@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
   return (
     <footer className="bg-gradient-to-b from-red-600 to-red-300 h-auto sticky w-full py-10 ">
       <div className="md:w-3/4  md:m-auto mx-4 flex justify-around flex-wrap">
-        <div className="w-full md:w-auto my-4">
+        <div className="w-full md:w-auto">
           <h1 className="text-xl text-center mb-4 md:text-start">SIGUENOS</h1>
           <ul className="flex justify-around flex-wrap md:flex-col">
             <li className="flex gap-2">

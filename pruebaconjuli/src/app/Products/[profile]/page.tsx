@@ -6,7 +6,7 @@ import Footer from "@/components/footer";
 import { ClienteDetail } from "@/components/addtocardetail";
 import Link from "next/link";
 
-const productById = async ({ params }: { params: { profile: string } }) => {
+const productById = async ({ params }: { params: { profile: string } }) => {  
   const dataProducts = await getDataProduct("http://localhost:3000/products");
   const productbyid = dataProducts.find(
     (product: IProduct) => String(product.id) === params.profile
@@ -36,7 +36,7 @@ const productById = async ({ params }: { params: { profile: string } }) => {
           </div>
         </main>
       </>
-    ); // O manejar el caso de producto no encontrado de otra manera
+    ); 
   }
 
   const { id, name, description, price, stock, image, categoryId } =

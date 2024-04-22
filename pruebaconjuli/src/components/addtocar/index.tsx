@@ -1,9 +1,12 @@
 "use client";
 
+import { useLoginContext } from "../Context";
+
 const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
   children,
   id,
 }): React.ReactElement => {
+  const { total, setTotal } = useLoginContext();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -21,6 +24,14 @@ const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
 
     localStorage.setItem("car", JSON.stringify(arraycar));
     console.log(arraycar);
+    const totalproducts = arraycar.reduce(
+      (acc: number, item: { id: number; cantidad: number }) => {
+        return acc + item.cantidad;
+      },
+      0
+    )
+
+    setTotal(totalproducts);
   };
   return (
     <button

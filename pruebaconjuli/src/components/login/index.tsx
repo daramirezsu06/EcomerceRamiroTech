@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { validateLoginForm } from "@/utils/formValidations";
 import { LoginErrorProps } from "@/app/types";
 import { LoginPost } from "@/utils/loginPost";
-import { useLoginContext } from "../loginContext";
+import { useLoginContext } from "../Context";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -40,19 +40,22 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const response = await LoginPost(LoginForm);
+    localStorage.setItem("user", JSON.stringify(response.user));
+    console.log(response.user);
+
     if (response.token) {
       setToken(response.token);
       console.log(response.token);
       console.log(Cookies.get("token"));
 
-      router.push("/orders");
+      router.push("/Home");
     }
   };
 
   return (
     <>
       <form className="md:w-1/3 m-auto md:my-20 ">
-        <h1 className="text-3xl text-center">Register</h1>
+        <h1 className="text-3xl text-center">LOGIN</h1>
         {LoginFormArray.map(
           ({ name, label, type, placeholder, required, icon }) => {
             return (

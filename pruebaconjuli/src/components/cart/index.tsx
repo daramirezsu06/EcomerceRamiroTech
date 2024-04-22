@@ -6,11 +6,13 @@ import { useEffect, useState } from "react";
 import { IProduct, IProductcart } from "@/app/types";
 import ItemProductCart from "../itemProductCart";
 import { createOrder } from "@/utils/postOrder";
-import { useLoginContext } from "../loginContext";
+import { useLoginContext } from "../Context";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
-  const { token } = useLoginContext();
+  const router = useRouter();
+  const { token, setTotal } = useLoginContext();
   const [products, setProducts] = useState<IProductcart[]>([]);
   useEffect(() => {
     const arrayProducts = JSON.parse(localStorage.getItem("car") || "[]");
@@ -32,6 +34,9 @@ const Cart = () => {
     console.log(response);
 
     localStorage.removeItem("car");
+    setTotal(0);
+
+    router.push("/orders");
   };
 
   return (
@@ -41,7 +46,11 @@ const Cart = () => {
           <ItemProductCart key={product.id} {...product} />
         ))}
       </div>
-      <button className="bg-red-500 rounded-md px-8 my-4" onClick={handleClick}>
+
+      <button
+        className="bg-red-500 rounded-md py-4 px-8 my-4 disabled:opacity-75 "
+        disabled={!Cookies.get("token")}
+        onClick={handleClick}>
         BUY
       </button>
     </div>

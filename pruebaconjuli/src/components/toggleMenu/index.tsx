@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useContext } from "react";
-import { ContextoMenu } from "../contexto";
+import { ContextoMenu } from "../menuContexto";
 
 const itemsNavBar = ["Home", "About", "Products", "Contact"];
 
@@ -23,5 +23,3 @@ export const ToggleMenu: React.FC = (): React.ReactElement => {
     </div>
   );
 };
-
-

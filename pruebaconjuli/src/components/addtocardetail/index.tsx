@@ -1,8 +1,10 @@
 "use client";
 import { useState } from "react";
 import { RiShoppingCartLine } from "@remixicon/react";
+import { useRouter } from "next/navigation";
 
-export const ClienteDetail = ({ stock, id }: { stock: number, id: number }) => {
+export const ClienteDetail = ({ stock, id }: { stock: number; id: number }) => {
+  const router = useRouter();
   const [count, setCount] = useState(0);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,6 +24,8 @@ export const ClienteDetail = ({ stock, id }: { stock: number, id: number }) => {
 
     localStorage.setItem("car", JSON.stringify(arraycar));
     console.log(arraycar);
+
+    router.push("/cart");
   };
 
   const handleplus = () => {
@@ -52,7 +56,10 @@ export const ClienteDetail = ({ stock, id }: { stock: number, id: number }) => {
         <h3 className="text-red-500 text-xl">{`${stock} Unidades Disponibles`}</h3>
       </div>
 
-      <button id={String(id)} className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center" onClick={handleClick}>
+      <button
+        id={String(id)}
+        className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center"
+        onClick={handleClick}>
         <RiShoppingCartLine color="#ffffff" size={25} />
       </button>
     </div>

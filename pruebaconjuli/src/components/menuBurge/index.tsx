@@ -1,7 +1,7 @@
 "use client";
 import { RiMenuLine } from "@remixicon/react";
 import { useContext } from "react";
-import { ContextoMenu } from "../contexto";
+import { ContextoMenu } from "../menuContexto";
 
 export const MenuBurger: React.FC = (): React.ReactElement => {
   const { statusMenu, setStatusMenu } = useContext(ContextoMenu);
@@ -17,4 +17,3 @@ export const MenuBurger: React.FC = (): React.ReactElement => {
     </div>
   );
 };
- 

@@ -1,7 +1,7 @@
 "use client";
 import { getOrders } from "@/utils/postOrder";
 import { useEffect, useState } from "react";
-import { useLoginContext } from "../loginContext";
+import { useLoginContext } from "../Context";
 import { IOrder } from "@/app/types";
 
 const HistoryOrders = () => {
@@ -18,7 +18,7 @@ const HistoryOrders = () => {
 
   return (
     <div>
-      <h1 className="flex justify-center gap-4 flex-wrap">
+      <h1 className="flex justify-center gap-4 flex-wrap md:w-3/4 m-auto">
         {orders.map(({ id, status, date, products }) => {
           return (
             <div key={id} className="border-2 border-red-500 rounded-md ">

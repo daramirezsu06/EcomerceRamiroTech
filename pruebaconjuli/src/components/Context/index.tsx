@@ -5,11 +5,15 @@ import Cookies from "js-cookie";
 interface AuthContextProps {
   token: string | null;
   setToken: (token: string | null) => void;
+  total: number | undefined;
+  setTotal: (total: number | undefined) => void; // Corrección aquí
 }
 
 const LoginContext = createContext<AuthContextProps>({
   token: null,
-  setToken: () => {},
+  setToken: () => { },
+  total: 0,
+  setTotal: () => { }
 });
 
 interface AuthProviderProps {
@@ -17,6 +21,7 @@ interface AuthProviderProps {
 }
 
 export const LoginProvider = ({ children }: AuthProviderProps) => {
+  const [total, setTotal] = useState<number | undefined>(0);
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
@@ -24,6 +29,19 @@ export const LoginProvider = ({ children }: AuthProviderProps) => {
     if (token) {
       setToken(token);
     }
+
+    const arraycar: { id: number; cantidad: number }[] = JSON.parse(
+      localStorage.getItem("car") || "[]"
+    );
+
+    const totalproducts = arraycar.reduce(
+      (acc: number, item: { id: number; cantidad: number }) => {
+        return acc + item.cantidad;
+      },
+      0
+    );
+
+    setTotal(totalproducts);
   }, []);
 
   useEffect(() => {
@@ -38,7 +56,7 @@ export const LoginProvider = ({ children }: AuthProviderProps) => {
   }, [token]);
 
   return (
-    <LoginContext.Provider value={{ token, setToken }}>
+    <LoginContext.Provider value={{ token, setToken, total, setTotal }}>
       {children}
     </LoginContext.Provider>
   );

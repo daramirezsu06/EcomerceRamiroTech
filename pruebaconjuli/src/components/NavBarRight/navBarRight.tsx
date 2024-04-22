@@ -1,5 +1,5 @@
 "use client";
-import { useLoginContext } from "../loginContext";
+import { useLoginContext } from "../Context";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -9,6 +9,8 @@ export const NavBarRight: React.FC = (): React.ReactElement => {
   const { setToken, token } = useLoginContext();
   const handleClick = () => {
     setToken(null);
+    localStorage.removeItem("user");
+    localStorage.removeItem("car");
     router.push("/");
   };
   const handleClick2 = () => {
@@ -18,7 +20,10 @@ export const NavBarRight: React.FC = (): React.ReactElement => {
   return (
     <nav>
       <ul className="md:flex content-around gap-3 hidden ">
-        <button onClick={handleClick2}>Help</button>
+        <Link href="/userInfo">
+          <button>User Info</button>
+        </Link>
+
         {token && (
           <>
             <Link href="/orders">history</Link>{" "}
