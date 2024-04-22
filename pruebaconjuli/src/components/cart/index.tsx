@@ -4,7 +4,7 @@ import { ProductCart } from "../product_cart";
 import { json } from "stream/consumers";
 import { useEffect, useState } from "react";
 import { IProduct, IProductcart } from "@/app/types";
-import ItemProductCart from "../itemProductCart";
+import ItemProductCart from "../item_nav/itemProductCart";
 import { createOrder } from "@/utils/postOrder";
 import { useLoginContext } from "../Context";
 import Cookies from "js-cookie";

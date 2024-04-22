@@ -3,8 +3,13 @@ import { useLoginContext } from "../Context";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import UserToggleMenu from "../userToggleMenu";
+import { useContext } from "react";
+import { ContextoMenu } from "../menuContexto";
+
 
 export const NavBarRight: React.FC = (): React.ReactElement => {
+  const { userMenu, setUserMenu } = useContext(ContextoMenu);
   const router = useRouter();
   const { setToken, token, setLogin } = useLoginContext();
   const handleClick = () => {
@@ -18,25 +23,30 @@ export const NavBarRight: React.FC = (): React.ReactElement => {
     console.log(token);
   };
   return (
-    <nav>
-      <ul className="md:flex content-around gap-3 hidden ">
-        <Link href="/userInfo">
-          <button>User Info</button>
-        </Link>
+    <div className="flex flex-col">
+      <nav>
+        <ul className="md:flex content-around gap-3 hidden ">
+          {token && (
+            <Link href="/userInfo">
+              <button>User Info</button>
+            </Link>
+          )}
 
-        {token && (
-          <>
-            <Link href="/orders">history</Link>{" "}
-            <button onClick={handleClick}>Log Out</button>
-          </>
-        )}
-        {!token && (
-          <>
-            <Link href="/Login">Log In</Link>
-            <Link href="/Register">Register</Link>
-          </>
-        )}
-      </ul>
-    </nav>
+          {token && (
+            <>
+              <Link href="/orders">history</Link>{" "}
+              <button onClick={handleClick}>Log Out</button>
+            </>
+          )}
+          {!token && (
+            <>
+              <Link href="/Login">Log In</Link>
+              <Link href="/Register">Register</Link>
+            </>
+          )}
+        </ul>
+      </nav>
+      {userMenu && <UserToggleMenu />}
+    </div>
   );
 };
