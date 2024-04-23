@@ -15,7 +15,7 @@ interface LoginForm {
 const Login = () => {
   const router = useRouter();
 
-  const { setToken } = useLoginContext();
+  const { setToken, total } = useLoginContext();
   const [LoginForm, setLoginForm] = useState<LoginForm>({
     email: "",
     password: "",
@@ -48,7 +48,11 @@ const Login = () => {
       console.log(response.token);
       console.log(Cookies.get("token"));
 
-      router.push("/Home");
+      if (total) {
+        router.push("/cart");
+      }else{
+        router.push("/Home");
+      }
     }
   };
 

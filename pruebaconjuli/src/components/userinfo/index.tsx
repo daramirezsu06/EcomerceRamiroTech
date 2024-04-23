@@ -29,21 +29,31 @@ const UserInfo = () => {
         </div>
         <div>
           <h2 className="text-xl font-semibold mb-2">Orders</h2>
-          {orders.map(({ id, status, date }) => (
-            <div
-              key={id}
-              className="border-2 border-red-500 rounded-md p-2 mb-2">
-              <p>
-                <span className="font-semibold">Order ID:</span> {id}
-              </p>
-              <p>
-                <span className="font-semibold">Status:</span> {status}
-              </p>
-              <p>
-                <span className="font-semibold">Date:</span> {date}
-              </p>
-            </div>
-          ))}
+          {orders.map(
+            ({
+              id,
+              status,
+              date,
+            }: {
+              id: number;
+              status: string;
+              date: string;
+            }) => (
+              <div
+                key={id}
+                className="border-2 border-red-500 rounded-md p-2 mb-2">
+                <p>
+                  <span className="font-semibold">Order ID:</span> {id}
+                </p>
+                <p>
+                  <span className="font-semibold">Status:</span> {status}
+                </p>
+                <p>
+                  <span className="font-semibold">Date:</span> {date}
+                </p>
+              </div>
+            )
+          )}
         </div>
       </div>
     </div>

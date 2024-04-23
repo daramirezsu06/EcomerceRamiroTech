@@ -6,7 +6,7 @@ const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
   children,
   id,
 }): React.ReactElement => {
-  const { total, setTotal } = useLoginContext();
+  const { setTotal } = useLoginContext();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();

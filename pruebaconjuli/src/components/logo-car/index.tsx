@@ -11,7 +11,7 @@ export const LogoCar: React.FC = (): React.ReactElement => {
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      if (window.scrollY > 100) {
+      if (window.scrollY > 50) {
         setIsFixed(true);
       } else {
         setIsFixed(false);

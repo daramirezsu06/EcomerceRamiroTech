@@ -6,10 +6,10 @@ import Footer from "@/components/footer";
 import { ClienteDetail } from "@/components/addtocardetail";
 import Link from "next/link";
 
-const productById = async ({ params }: { params: { profile: string } }) => {  
+const productById = async ({ params }: { params: { id: string } }) => {
   const dataProducts = await getDataProduct("http://localhost:3000/products");
   const productbyid = dataProducts.find(
-    (product: IProduct) => String(product.id) === params.profile
+    (product: IProduct) => String(product.id) === params.id
   );
   if (!productbyid) {
     return (
@@ -36,7 +36,7 @@ const productById = async ({ params }: { params: { profile: string } }) => {
           </div>
         </main>
       </>
-    ); 
+    );
   }
 
   const { id, name, description, price, stock, image, categoryId } =

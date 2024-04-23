@@ -26,6 +26,10 @@ const Cart = () => {
   }, []);
 
   const handleClick = async () => {
+    if (!token) {
+      router.push("/Login");
+      return;
+    }
     const arrayProducts = products.map((product) => {
       return product.id;
     });
@@ -48,8 +52,7 @@ const Cart = () => {
       </div>
 
       <button
-        className="bg-red-500 rounded-md py-4 px-8 my-4 disabled:opacity-75 "
-        disabled={!Cookies.get("token")}
+        className="bg-red-500 rounded-md py-4 px-8 my-4 "
         onClick={handleClick}>
         BUY
       </button>

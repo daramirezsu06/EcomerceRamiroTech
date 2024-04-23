@@ -7,15 +7,15 @@ import UserToggleMenu from "../userToggleMenu";
 import { useContext } from "react";
 import { ContextoMenu } from "../menuContexto";
 
-
 export const NavBarRight: React.FC = (): React.ReactElement => {
   const { userMenu, setUserMenu } = useContext(ContextoMenu);
   const router = useRouter();
-  const { setToken, token, setLogin } = useLoginContext();
+  const { setToken, token, setLogin, setTotal } = useLoginContext();
   const handleClick = () => {
     setToken(null);
     localStorage.removeItem("user");
     localStorage.removeItem("car");
+    setTotal(0);
     router.push("/");
   };
   const handleClick2 = () => {
