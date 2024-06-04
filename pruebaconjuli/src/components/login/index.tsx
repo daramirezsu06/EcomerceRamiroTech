@@ -50,7 +50,7 @@ const Login = () => {
 
       if (total) {
         router.push("/cart");
-      }else{
+      } else {
         router.push("/Home");
       }
     }
