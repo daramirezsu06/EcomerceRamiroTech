@@ -5,13 +5,14 @@ import { HeaderCurrent } from "@/components/headerCurrent";
 import Footer from "@/components/footer";
 import { ClienteDetail } from "@/components/addtocardetail";
 import Link from "next/link";
+import { getProductById } from "@/utils/getproductById";
 
 const productById = async ({ params }: { params: { id: string } }) => {
-  const dataProducts = await getDataProduct("http://localhost:3000/products");
-  const productbyid = dataProducts.find(
-    (product: IProduct) => String(product.id) === params.id
-  );
-  if (!productbyid) {
+  const dataProducts = await getProductById(params.id);
+  // const productbyid = dataProducts.find(
+  //   (product: IProduct) => String(product.id) === params.id
+  // );
+  if (!dataProducts) {
     return (
       <>
         <main className="flex items-center justify-center bg-background_light min-h-screen sm:py-32 lg:px-8 h-full">
@@ -39,8 +40,8 @@ const productById = async ({ params }: { params: { id: string } }) => {
     );
   }
 
-  const { id, name, description, price, stock, image, categoryId } =
-    productbyid;
+  const { id, name, description, price, stock, imgUrl, categoryId } =
+    dataProducts;
 
   return (
     <>
@@ -51,7 +52,7 @@ const productById = async ({ params }: { params: { id: string } }) => {
         md:w-3/4 md:flex-row  md:m-auto md:gap-8 md:px-8 md:bg-inherit">
         <div className=" bg-white w-full ">
           <img
-            src={image}
+            src={imgUrl}
             alt={name}
             className="h-80 mx-auto md:p-0 rounded-lg  p-2 "
           />

@@ -39,8 +39,8 @@ export function validateRegisterForm(
     errors.address = "Address is required";
   } else if (!values.phone) {
     errors.phone = "Phone is required";
-  } else if (values.phone.length < 10) {
-    errors.phone = "Phone needs to be more than 10 characters";
+  } else if (values.phone.length < 6 || values.phone.length > 15) {
+    errors.phone = "Phone needs to be more than 10 characters an less than 15";
   }
   return errors;
 }

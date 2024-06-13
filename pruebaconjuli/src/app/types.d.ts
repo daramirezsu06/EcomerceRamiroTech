@@ -1,11 +1,16 @@
+
 export interface IProduct {
   id: number;
   name: string;
   description: string;
   price: number;
   stock: number;
-  image: string;
+  imgUrl: string;
   categoryId: number;
+}
+export interface IResponseProduct {
+  products: IProduct[];
+  total: number;
 }
 export interface IProductcart extends IProduct {
   cantidad: number;

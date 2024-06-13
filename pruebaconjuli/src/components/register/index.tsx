@@ -13,6 +13,8 @@ interface RegisterForm {
   address: string;
   phone: string;
   confirmPassword: string;
+  country: string;
+  city: string;
 }
 
 const Register: React.FC = (): React.ReactElement => {
@@ -24,6 +26,8 @@ const Register: React.FC = (): React.ReactElement => {
     address: "",
     phone: "",
     confirmPassword: "",
+    country: "Colombia",
+    city: "Medellin",
   });
 
   const [registerError, setRegisterError] = useState<RegisterErrorProps>({
