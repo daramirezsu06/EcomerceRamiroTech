@@ -1,6 +1,5 @@
-
 export interface IProduct {
-  id: number;
+  id: string;
   name: string;
   description: string;
   price: number;
@@ -19,7 +18,7 @@ export interface IProductcart extends IProduct {
 export interface ICategory {
   id?: number;
   name: string;
-  image?: string;
+  imgUrl?: string;
 }
 
 export interface IOrderUser {

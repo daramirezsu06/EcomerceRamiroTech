@@ -1,5 +1,5 @@
-import {ICategory} from "../app/types";
-export const categoriesToPreLoad: ICategory[] = [
+
+export const categoriesToPreLoad= [
   {
     name: "Smartphones",
     image:

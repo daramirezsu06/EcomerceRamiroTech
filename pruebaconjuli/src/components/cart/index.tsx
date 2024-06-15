@@ -1,5 +1,5 @@
 "use client";
-import { getDataProduct, getProductById } from "@/utils/getData";
+import { getDataProduct } from "@/utils/getData";
 import { ProductCart } from "../product_cart";
 import { json } from "stream/consumers";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { createOrder } from "@/utils/postOrder";
 import { useLoginContext } from "../Context";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
+import { getProductById } from "@/utils/getproductById";
 
 const Cart = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const Cart = () => {
   useEffect(() => {
     const arrayProducts = JSON.parse(localStorage.getItem("car") || "[]");
     const products = arrayProducts.map(
-      async (item: { id: number; cantidad: number }) => {
+      async (item: { id: string; cantidad: number }) => {
         const product = await getProductById(item.id);
         return { ...product, cantidad: item.cantidad };
       }

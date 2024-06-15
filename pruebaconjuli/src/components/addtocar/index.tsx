@@ -1,21 +1,25 @@
 "use client";
-
+import React from "react";
 import { useLoginContext } from "../Context";
 
-const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
-  children,
-  id,
-}): React.ReactElement => {
+interface Props {
+  children: React.ReactNode;
+  id: string;
+}
+
+const AddToCar: React.FC<Props> = ({ children, id }): React.ReactElement => {
   const { setTotal } = useLoginContext();
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = Number(e.currentTarget.id);
-    const arraycar: { id: number; cantidad: number }[] = JSON.parse(
+
+    const arraycar: { id: string; cantidad: number }[] = JSON.parse(
       localStorage.getItem("car") || "[]"
     );
 
-    const index = arraycar.findIndex((item) => item.id == id);
+    const index = arraycar.findIndex((item) => item.id === id);
+
     if (index !== -1) {
       arraycar[index].cantidad += 1;
     } else {
@@ -23,21 +27,21 @@ const AddToCar: React.FC<{ children: React.ReactNode; id: number }> = ({
     }
 
     localStorage.setItem("car", JSON.stringify(arraycar));
-    console.log(arraycar);
+
     const totalproducts = arraycar.reduce(
-      (acc: number, item: { id: number; cantidad: number }) => {
-        return acc + item.cantidad;
-      },
+      (acc: number, item: { id: string; cantidad: number }) =>
+        acc + item.cantidad,
       0
     );
 
     setTotal(totalproducts);
   };
+
   return (
     <button
       role="button"
       className="bg-red-500 rounded-full w-8 h-8 flex justify-center items-center shadow-lg shadow-indigo-500 hover:bg-lime-500"
-      id={String(id)}
+      id={id} // id se mantiene como string
       onClick={handleClick}>
       {children}
     </button>

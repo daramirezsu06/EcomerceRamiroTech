@@ -1,4 +1,4 @@
-import { ICategory, IProduct, IResponseProduct } from "../app/types";
+import {  IResponseProduct } from "../app/types";
 import { productsToPreLoad } from "./arrayProducts";
 import { categoriesToPreLoad } from "./categorys";
 const URL = process.env.NEXT_PUBLIC_API_URL;
@@ -7,7 +7,7 @@ export const getDataProduct = async (
   page: number
 ): Promise<IResponseProduct> => {
   const response = await fetch(`${URL}/products?page=${page}&limit=5`);
-  const data: IResponseProduct = await response.json();
+  const data = await response.json();
   // const dataReturn: IResponseProduct = data.map((product: IProduct) => ({
   //   ...product,
   //   image:

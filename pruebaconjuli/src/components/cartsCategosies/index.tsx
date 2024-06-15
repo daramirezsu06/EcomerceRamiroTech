@@ -1,11 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { categoriesToPreLoad } from "../../utils/categorys";
+import React, { useEffect, useState } from "react";
+import { ICategory } from "@/app/types"; // Ajusta la ruta según la ubicación de tu tipo ICategory
 import { CartCategory } from "../cartCategory";
 import { getCategories } from "@/utils/getCategories";
 
 export const CartsCategosies: React.FC = (): React.ReactElement => {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState<ICategory[]>([]); // Tipifica useState con ICategory[]
+
   const getdata = async () => {
     try {
       const response = await getCategories();
@@ -15,6 +16,7 @@ export const CartsCategosies: React.FC = (): React.ReactElement => {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getdata();
   }, []);

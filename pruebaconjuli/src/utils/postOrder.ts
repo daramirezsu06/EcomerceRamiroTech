@@ -1,7 +1,7 @@
 import axios from "axios";
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-async function createOrder(products: number[], token: string | undefined) {
+async function createOrder(products: string[], token: string | undefined) {
   try {
     if (!products.length) {
       throw new Error("No products in the order");

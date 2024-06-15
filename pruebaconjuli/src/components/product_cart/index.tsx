@@ -23,6 +23,7 @@ export const ProductCart: React.FC<IProduct> = ({
         <p>{`${description.slice(0, 50)}...`}</p>
         <div className="flex justify-between items-center w-full px-8">
           <h3 className="text-red-500 text-xl">{`${price} $`}</h3>
+          {/* <h1>{`el id es: ${id}`}</h1> */}
           <AddToCar id={id}>
             <RiShoppingCartLine color="#ffffff" size={25} />
           </AddToCar>

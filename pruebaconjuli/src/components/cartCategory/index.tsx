@@ -1,4 +1,5 @@
 import { ICategory } from "@/app/types";
+
 export const CartCategory: React.FC<ICategory> = ({
   name,
   imgUrl,
